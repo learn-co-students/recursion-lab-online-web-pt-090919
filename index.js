@@ -26,19 +26,46 @@ function reverseString(myString) {
 }
 
 // returns 'true' when a string is a palindrome
-function isPalindrome() {
-
+function isPalindrome(myString) {
+  let l = myString.length
+  if (l < 2) {
+    return true;
+  } else if (myString[0] === myString[l - 1]) {
+    return isPalindrome(myString.substring(1, l - 1));
+  } else {
+    return false;
+  }
 }
 
-function maxOf() {
-
-
+// sums all members up to a given index in an array
+function addUpTo(arr, idx) {
+  // Alt. Solution
+  // return index ? myArray[index] + addUpTo(myArray, --index) : myArray[index];
+  if (idx < 1) {
+    return arr[0];
+  } else {
+    return arr[idx] + addUpTo(arr.slice(0, idx), idx - 1);
+  }
 }
-function addUpTo() {
 
+// finds the largest integer in an array
+// e.g. maxOf[1,5,3] => Math.max(3,Math.max(5,1))
+function maxOf(arr) {
+  // return Math.max(...arr)
+  if (arr.length === 1) {
+    return arr[0];
+  } else {
+    return Math.max(arr.pop(), maxOf(arr));
+  }
 }
 
-function includesNumber() {
-
+// returns 'true' if the number is present in the array
+function includesNumber(arr, num) {
+  if (arr[0] === num) {
+    return true;
+  } else if (arr.length === 0) {
+    return false;
+  } else {
+    return includesNumber(arr.slice(1), num);
+  }
 }
-
